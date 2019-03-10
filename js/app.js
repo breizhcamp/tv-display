@@ -14,12 +14,12 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
     	'Hall': 'Hall'
     };
     
-    $scope.days = [ '2017-04-19', '2017-04-20', '2017-04-21' ];
+    $scope.days = [ '2019-03-20', '2019-03-21', '2019-03-22' ];
     
     $scope.day = $scope.days[$location.search()['day']];
 
     $scope.updateTime = function() {
-		var now = new Date();
+		var now = new Date(2019, 2, 21, 11, 20, 0, 0);
 		
 		//select right day if not defined
 		if (!$scope.day) {

@@ -1,45 +1,167 @@
-<!DOCTYPE html>
-<html ng-app="BreizhcampRoom">
+<!doctype html>
+<html lang="fr">
 <head>
-    <title>Breizhcamp - Programme par salle</title>
-    <meta charset="UTF-8" lang="fr" />
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="css/app.css" rel="stylesheet"/>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font.css">
+	<link rel="stylesheet" href="css/style.css">
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/angular.min.js"></script>
+	<title>Breizhcamp - Programme par salle</title>
 </head>
 
-<body ng-controller="ScheduleController">
+<body>
 
-	<video autoplay="" muted="" loop="" poster="videos/programming-ide.jpg" class="bgVideo">
-        <source src="videos/programming-ide.webm" type="video/webm">
-        <source src="videos/programming-ide.mp4" type="video/mp4">
-        <source src="videos/programming-ide.ogv" type="video/ogg">
-    </video>
+<video autoplay="" muted="" loop="" poster="videos/programming-ide.jpg" class="bgVideo">
+	<source src="videos/programming-ide.webm" type="video/webm">
+	<source src="videos/programming-ide.mp4" type="video/mp4">
+	<source src="videos/programming-ide.ogv" type="video/ogg">
+</video>
 
-    <header>
-        <span class="time">{{time}}</span>
-    </header>
+<div class="container-fluid">
+	<!-- Logo + hour + time -->
+	<div class="row align-items-center header">
+		<div class="col logo">
+			<img src="img/logo-inverse.svg" alt="BreizhCamp">
+		</div>
 
-    <h1 ng-show="onAirTalks.length > 0">Sessions en cours</h1>
+		<div class="col-2 text-center"><h1 class="display-1 font-weight-normal">11h25</h1></div>
 
-    <article ng-repeat="talk in onAirTalks" class="talk" ng-style="{width: (100/onAirTalks.length - 1) + '%'}">
-        <div class="time">{{talk.event_start.split('T')[1].substr(0,5)}}</div>
-        <div class="room">{{roomByTrack[talk.venue]}}</div>
-        <div class="title">{{talk.name}}</div>
-    </article>
+		<div class="col text-right"><h1 class="display-4">mercredi 20 mars</h1></div>
+	</div>
 
-    <h2 ng-show="nextTalks.length > 0">A venir</h2>
+	<!-- Current session -->
+	<div class="row session-list-title no-gutters">
+		<div class="col"><div class="row"><div class="col">En cours</div></div></div>
+	</div>
 
-    <article ng-repeat="talk in nextTalks" class="talk next" ng-style="{width: (100/nextTalks.length - 1) + '%'}">
-        <div class="time">{{talk.event_start.split('T')[1].substr(0,5)}}</div>
-        <div class="room">{{roomByTrack[talk.venue]}}</div>
-        <div class="title">{{talk.name}}</div>
-    </article>
+	<div class="row no-gutters">
+		<div class="col session">
+			<div class="row">
+				<div class="col session-room">Amphi D</div>
+				<div class="col-auto session-time">Fin à 12:50</div>
+			</div>
+			<div class="row">
+				<div class="col session-title">Micro Frontend: le casse tête des micro services étendu au FrontEnd !</div>
+			</div>
 
-    <script src="js/app.js"></script>
-    <script src="js/Markdown.Converter.js"></script>
-    <script src="js/Markdown.Sanitizer.js"></script>
+			<div class="row">
+				<div class="col session-speakers">Pierre Tibulle, Horacio Gonzalez, Romain Rastel</div>
+			</div>
+		</div>
+
+		<div class="col session">
+			<div class="row">
+				<div class="col session-room">Amphi C</div>
+				<div class="col-auto session-time">Fin à 12:50</div>
+			</div>
+			<div class="row">
+				<div class="col session-title">Micro Frontend: le casse tête des micro services étendu au FrontEnd !</div>
+			</div>
+
+			<div class="row">
+				<div class="col session-speakers">Pierre Tibulle, Horacio Gonzalez, Romain Rastel</div>
+			</div>
+		</div>
+
+		<div class="col session">
+			<div class="row">
+				<div class="col session-room">Amphi B</div>
+				<div class="col-auto session-time">Fin à 12:50</div>
+			</div>
+			<div class="row">
+				<div class="col session-title">Micro Frontend: le casse tête des micro services étendu au FrontEnd !</div>
+			</div>
+
+			<div class="row">
+				<div class="col session-speakers">Pierre Tibulle, Horacio Gonzalez, Romain Rastel</div>
+			</div>
+		</div>
+
+		<div class="col session">
+			<div class="row">
+				<div class="col session-room">Amphi A</div>
+				<div class="col-auto session-time">Fin à 12:50</div>
+			</div>
+			<div class="row">
+				<div class="col session-title">Micro Frontend: le casse tête des micro services étendu au FrontEnd !</div>
+			</div>
+
+			<div class="row">
+				<div class="col session-speakers">Pierre Tibulle, Horacio Gonzalez, Romain Rastel</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Next session -->
+	<div class="row session-list-title no-gutters mt-5">
+		<div class="col"><div class="row"><div class="col">À suivre</div></div></div>
+	</div>
+
+	<div class="row no-gutters">
+		<div class="col session">
+			<div class="row">
+				<div class="col session-room">Amphi D</div>
+				<div class="col-auto session-time">Début à 13:15</div>
+			</div>
+			<div class="row">
+				<div class="col session-title">Micro Frontend: le casse tête des micro services étendu au FrontEnd !</div>
+			</div>
+
+			<div class="row">
+				<div class="col session-speakers">Pierre Tibulle, Horacio Gonzalez, Romain Rastel</div>
+			</div>
+		</div>
+
+		<div class="col session">
+			<div class="row">
+				<div class="col session-room">Amphi C</div>
+				<div class="col-auto session-time">Début à 13:15</div>
+			</div>
+			<div class="row">
+				<div class="col session-title">Micro Frontend: le casse tête des micro services étendu au FrontEnd !</div>
+			</div>
+
+			<div class="row">
+				<div class="col session-speakers">Pierre Tibulle, Horacio Gonzalez, Romain Rastel</div>
+			</div>
+		</div>
+
+		<div class="col session">
+			<div class="row">
+				<div class="col session-room">Amphi B</div>
+				<div class="col-auto session-time">Début à 13:15</div>
+			</div>
+			<div class="row">
+				<div class="col session-title">Micro Frontend: le casse tête des micro services étendu au FrontEnd !</div>
+			</div>
+
+			<div class="row">
+				<div class="col session-speakers">Pierre Tibulle, Horacio Gonzalez, Romain Rastel</div>
+			</div>
+		</div>
+
+		<div class="col session">
+			<div class="row">
+				<div class="col session-room">Amphi A</div>
+				<div class="col-auto session-time">Début à 13:15</div>
+			</div>
+			<div class="row">
+				<div class="col session-title">Micro Frontend: le casse tête des micro services étendu au FrontEnd !</div>
+			</div>
+
+			<div class="row">
+				<div class="col session-speakers">Pierre Tibulle, Horacio Gonzalez, Romain Rastel</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
 </body>
 </html>
