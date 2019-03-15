@@ -3,7 +3,7 @@ html, body {
 	height: 100%;
 	background-color: #000000;
 	color: #eeeeee;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Aprikas', sans-serif;
 }
 
 .bgVideo {
@@ -18,8 +18,8 @@ html, body {
 }
 
 .header:before {
-	background-color: #10007d;
-	opacity: 0.3;
+	background-color: #483d8b;
+	opacity: 0.62;
 	content: "";
 	position: absolute;
 	width: 100%;
@@ -53,7 +53,7 @@ html, body {
 }
 
 .session {
-	margin: -2px 2px;
+	margin: -2px 8px;
 	padding: 5px 0;
 	color: #000000;
 }
@@ -72,23 +72,32 @@ html, body {
 
 .session-room {
 	font-size: 2rem;
-	font-weight: 300;
+	font-weight: lighter;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.session-room span {
+	font-weight: bold;
+	color: #483d8b;
 }
 
 .session-time {
 	text-align: right;
 	font-size: 2rem;
-	font-weight: 300;
+	font-weight: lighter;
+	text-transform: uppercase;
 }
 
 .session-title {
+	padding: 15px;
 	text-align: center;
 	font-size: 2rem;
+	font-style: italic;
 }
 
 .session-speakers {
 	text-align: center;
 	font-size: 1.4rem;
-	font-style: italic;
-	color: #6c757d;
+	color: #483d8b;
 }
