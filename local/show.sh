@@ -2,6 +2,8 @@
 
 HERE=$(dirname "$(readlink -f "$0")")
 
-devilspie2 -d -f "$HERE/devilspie2" &
-chromium-browser --start-fullscreen "$HERE/../index.html"
+cd "$HERE/.."
+devilspie2 -d -f "local/devilspie2" &
+python3 -m http.server 8081 &
+chromium-browser --start-fullscreen http://localhost:8081
 
