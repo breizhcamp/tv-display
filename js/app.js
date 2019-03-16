@@ -18,7 +18,7 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
     $scope.day = $scope.days[$location.search()['day']];
 
     $scope.updateTime = function() {
-		var now = new Date(2019, 2, 21, 10, 30, 0, 0);
+		var now = new Date();
 		
 		//select right day if not defined
 		if (!$scope.day) {
