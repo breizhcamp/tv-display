@@ -11,9 +11,12 @@ if (get_window_name():sub(-#chromium_window) == chromium_window) then
 	debug_print("Application name: " .. get_application_name())
 	
 	pin_window();
+	set_window_fullscreen(false);
 	unmaximize();
 	undecorate_window();
 	set_window_position(1920,0);
+	set_window_fullscreen(true);
 	maximize();
+	unpin_window();
 end
 
