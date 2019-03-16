@@ -10,7 +10,6 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
     	'Amphi B': 'Amphi B',
     	'Amphi C': 'Amphi C',
     	'Amphi D': 'Amphi D',
-    	'Lab': 'Esp. Lab.',
     	'Hall': 'Hall'
     };
     
@@ -19,14 +18,16 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
     $scope.day = $scope.days[$location.search()['day']];
 
     $scope.updateTime = function() {
-		var now = new Date(2019, 2, 21, 11, 20, 0, 0);
+		var now = new Date(2019, 2, 21, 10, 30, 0, 0);
 		
 		//select right day if not defined
 		if (!$scope.day) {
 			$scope.day = $filter('date')(now, "yyyy-MM-dd");
 		}
 
-        $scope.time = $filter('date')(now, "dd/MM - H:mm");
+        $scope.time = $filter('date')(now, "H:mm");
+		$scope.longDate = $filter('date')(now, "EEEE dd MMMM");
+
         $scope.timeInSeconds = now.getHours() * 60 + now.getMinutes();
 
 		$scope.onAirTalks = [];
@@ -34,27 +35,31 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
         $scope.nextTalks = [];
         $scope.nextTalksByRoom = {};
 
-        angular.forEach($scope.talks, function(talk) {
-        
-        	if (!talk.event_start.startsWith($scope.day)) {
-        		return;
-        	}
-        
-            if ($scope.isOnAir(talk)) {
-                $scope.onAirTalks.push(talk);
-                $scope.talksByRoom[$scope.roomByTrack[talk.venue]] = talk;
-            }
+		angular.forEach($scope.talks, function(talk) {
+			if (!talk.event_start.startsWith($scope.day)) {
+				return;
+			}
 
-            if ($scope.isAfter(talk)) {
-                $scope.nextTalksByRoom[$scope.roomByTrack[talk.venue]] = talk;
-            }
-            
-        });
+			if ($scope.isOnAir(talk)) {
+				$scope.onAirTalks.push(talk);
+				$scope.talksByRoom[$scope.roomByTrack[talk.venue]] = talk;
+			}
+
+			if ($scope.isAfter(talk)) {
+				$scope.nextTalksByRoom[$scope.roomByTrack[talk.venue]] = talk;
+			}
+
+			//replace some value not handled by the font
+			talk.name = talk.name.replace(/, /g, " - ").replace(/\./g, " ");
+			talk.speakers = talk.speakers.replace(/, /g, " - ").replace(/\./g, " ");
+		});
 
         angular.forEach($scope.nextTalksByRoom, function(talk) {
             $scope.nextTalks.push(talk);
         });
 
+		$scope.onAirTalks = $scope.onAirTalks.sort(function(t1, t2) { return t1.venue.localeCompare(t2.venue) });
+		$scope.nextTalks = $scope.nextTalks.sort(function(t1, t2) { return t1.venue.localeCompare(t2.venue) });
 
         $timeout($scope.updateTime, 60000);
     };
@@ -78,7 +83,8 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
         if (nextTalk) {
             beforeTime = $scope.getTimeInSeconds(nextTalk.event_start);
         }
-        return afterTime < startInSeconds && startInSeconds < beforeTime;
+        console.log(talk.name, startInSeconds - $scope.timeInSeconds);
+        return afterTime < startInSeconds && startInSeconds < beforeTime && (startInSeconds - $scope.timeInSeconds < 120);
     };
 
     $scope.getTimeInSeconds = function(date) {
