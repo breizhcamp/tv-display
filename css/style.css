@@ -32,7 +32,7 @@ html, body {
 }
 
 .session-list-title {
-	font-size: 3.5rem;
+	font-size: 4rem;
 	text-align: center;
 	text-transform: uppercase;
 	font-weight: 300;
@@ -71,7 +71,7 @@ html, body {
 }
 
 .session-room {
-	font-size: 2rem;
+	font-size: 2.5rem;
 	font-weight: lighter;
 	text-transform: uppercase;
 	white-space: nowrap;
@@ -84,7 +84,7 @@ html, body {
 
 .session-time {
 	text-align: right;
-	font-size: 2rem;
+	font-size: 2.5rem;
 	font-weight: lighter;
 	text-transform: uppercase;
 }
@@ -92,8 +92,9 @@ html, body {
 .session-title {
 	padding: 15px;
 	text-align: center;
-	font-size: 2rem;
+	font-size: 2.3rem;
 	font-style: italic;
+	font-weight: bolder;
 }
 
 .session-speakers {
