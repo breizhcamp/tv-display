@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 var breizhcampRoom = angular.module('BreizhcampRoom', []);
 
@@ -83,7 +83,6 @@ breizhcampRoom.controller('ScheduleController', function ($scope, $http, $timeou
         if (nextTalk) {
             beforeTime = $scope.getTimeInSeconds(nextTalk.event_start);
         }
-        console.log(talk.name, startInSeconds - $scope.timeInSeconds);
         return afterTime < startInSeconds && startInSeconds < beforeTime && (startInSeconds - $scope.timeInSeconds < 120);
     };
 
