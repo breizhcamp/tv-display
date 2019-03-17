@@ -4,6 +4,5 @@ HERE=$(dirname "$(readlink -f "$0")")
 
 cd "$HERE/.."
 devilspie2 -d -f "local/devilspie2" &
-python3 -m http.server 8081 &
-exec chromium-browser --start-fullscreen http://localhost:8081
+exec chromium --disable-gpu --allow-file-access-from-files --start-fullscreen --password-store=basic --kiosk --incognito --noerrdialogs --disable-translate --no-first-run --fast --fast-start --disable-infobars --disable-features=TranslateUI --disk-cache-dir=/dev/null index.html
 
